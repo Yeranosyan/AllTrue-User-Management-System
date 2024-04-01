@@ -15,7 +15,10 @@ const UserFormDialog = ({
   selectedUser,
   onSuccess,
 }) => {
-  const [user, setUser] = useState(selectedUser || {});
+  const [user, setUser] = useState({
+    name: selectedUser?.first_name || "",
+    job: "",
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,7 +61,7 @@ const UserFormDialog = ({
         <DialogContent>
           <TextField
             id="name"
-            value={user?.first_name}
+            value={user?.name}
             name="name"
             label="Name"
             required
@@ -67,7 +70,7 @@ const UserFormDialog = ({
             margin="normal"
             onChange={(e) => {
               setUser({
-                first_name: e.target.value,
+                name: e.target.value,
               });
             }}
           />
